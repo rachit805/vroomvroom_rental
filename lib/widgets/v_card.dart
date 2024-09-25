@@ -1,6 +1,5 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:vroomvroom_app/widgets/booking_menu.dart';
 
 class VCard extends StatelessWidget {
   const VCard({
@@ -49,7 +48,10 @@ class VCard extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context, builder: (builder) => BookingMenu());
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.blue,
@@ -66,6 +68,31 @@ class VCard extends StatelessWidget {
           ],
         ),
       )),
+    );
+  }
+
+  Widget bookingbuttomSheet(BuildContext context) {
+    double sW = MediaQuery.of(context).size.width;
+    double sH = MediaQuery.of(context).size.height;
+    return Container(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      height: sH * 0.5,
+      child: Column(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: SizedBox(
+                  width: sW * 0.5,
+                  child: const Divider(
+                    thickness: 5,
+                  )),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

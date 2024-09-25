@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vroomvroom_app/controller/home_controller.dart';
+import 'package:vroomvroom_app/screens/booking_screen.dart';
 import 'package:vroomvroom_app/widgets/c_text.dart';
 import 'package:vroomvroom_app/widgets/v_card.dart';
 
@@ -10,6 +11,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final HomeController controller = HomeController();
   List<Widget> carousel_list = [];
+  String _selectedHour = "Select Hours"; // Default text
+  List<int> _hoursList = [3, 6, 12]; // List of hours
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const CText(
                       text: "Our Renting Fleet",
-                      size: 22,
+                      size: 18,
                     ),
                     VButton(controller: controller)
                   ],
@@ -188,7 +191,11 @@ class VButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double sW = MediaQuery.of(context).size.width;
+    double sH = MediaQuery.of(context).size.height;
+
     return Container(
+      width: sW * 0.45,
       decoration: BoxDecoration(
         color: Colors.blueGrey,
         borderRadius: BorderRadius.circular(16),
@@ -205,6 +212,7 @@ class VButton extends StatelessWidget {
                   controller.selectscooter.value = false;
                 },
                 child: Container(
+                  width: sW * 0.17,
                   decoration: BoxDecoration(
                       color: controller.selectbike.value
                           ? Colors.blueAccent
@@ -227,6 +235,7 @@ class VButton extends StatelessWidget {
                   controller.selectbike.value = false;
                 },
                 child: Container(
+                  width: sW * 0.22,
                   decoration: BoxDecoration(
                       color: controller.selectscooter.value
                           ? Colors.blueAccent
